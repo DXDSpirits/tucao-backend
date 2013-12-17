@@ -20,9 +20,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = '0a$x(w4ki)$wr(7#7h%rni^8ou_%=vbk%i$&07+$rqf56d)ei8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -82,3 +82,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+try:
+    LOCAL_SETTINGS #@UndefinedVariable 
+except NameError:
+    try:
+        from local_settings import * #@UnusedWildImport
+    except ImportError:
+        pass
